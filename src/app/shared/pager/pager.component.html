@@ -1,0 +1,10 @@
+<div class="panel-heading" style="text-align: right;">
+    <button type="button" class="btn btn-info btn-xs"
+            (click)="onPageIndexChanging(previousIndex)" *ngIf="startIndex > pageSize">
+        <
+    </button>
+    <button type="button" class="btn btn-info btn-xs" *ngIf="showNextBtn"
+            (click)="onPageIndexChanging(nextIndex)">
+        >
+    </button>
+</div>

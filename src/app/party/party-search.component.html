@@ -1,0 +1,34 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            Search parties</h3>
+    </div>
+    <div class="panel-body">
+        <form [formGroup]="searchForm" (submit)="onSubmit()" novalidate>
+            <div class="form-group">
+                <label class="control-label col-md-2">Party Code:</label>
+                <div class="col-md-4">
+                    <input class="form-control" formControlName="partyCode">
+                </div>
+                <label class="control-label col-md-2">First Name:</label>
+                <div class="col-md-4">
+                    <input class="form-control" formControlName="firstName">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">Last Name:</label>
+                <div class="col-md-4">
+                    <input class="form-control" formControlName="lastName">
+                </div>
+                <div class="col-md-offset-2 col-md-4" style="text-align:center;">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                    <button type="button" class="btn btn-primary" (click)="onAdd()">Add</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <app-pager (pageSize)="pageSize" (onPageChange)="onPageChange($event)" #pager></app-pager>
+    <app-party-list [searchResult]="searchResult" (deleteParty)="onDeleteParty($event)" ></app-party-list>
+</div>

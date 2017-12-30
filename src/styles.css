@@ -1,0 +1,177 @@
+html {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: #fff;
+	border-top: solid 10px #000;
+	color: #333;
+	font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	color: #333;
+	outline: none;
+	padding-left: 3px;
+	padding-right: 3px;
+	text-decoration: underline;
+}
+
+a:link, a:visited, a:active, a:hover {
+    color: #333;
+}
+
+a:hover {
+    background-color: #c7d1d6;
+}
+
+header, footer, hgroup, nav, section {
+	display: block;
+}
+
+mark {
+	background-color: #a6dbed;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.float-left {
+	float: left;
+}
+
+.float-right {
+	float: right;
+}
+
+.clear-fix:after {
+	content: ".";
+	clear: both;
+	display: block;
+	height: 0;
+	visibility: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: #000;
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+
+h1 {
+	font-size: 2em;
+}
+
+h2 {
+	font-size: 1.75em;
+}
+
+h3 {
+	font-size: 1.2em;
+}
+
+h4 {
+	font-size: 1.1em;
+}
+
+h5, h6 {
+	font-size: 1em;
+}
+
+h5 a:link, h5 a:visited, h5 a:active {
+    padding: 0;
+    text-decoration: none;
+}
+
+/*============== Layout... =================*/
+.padoff-lr {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+@media (max-width:760px) {
+	.row {
+		margin-left: 0px;
+		margin-right: 0px;
+	}
+	.form-group {
+		margin-bottom:0px;
+	}
+}
+.content-wrapper {
+	margin: 0 auto;
+	background-color: #efeeef;
+}
+
+#body {
+	clear: both; /*padding-bottom: 10px;*/
+}
+
+/*============== Validation... =================*/
+.field-validation-error {
+	color: #ffffff;
+	display: inline-block;
+	*display: inline;
+	padding: 2px 5px 2px 5px;
+	vertical-align: middle;
+	*zoom: 1;
+	border: 2px;
+	border-radius: 3px;
+	font-size: 10px;
+	background-color: #b94a48;
+}
+
+.field-validation-valid {
+	display: none;
+}
+
+.input-validation-error {
+	color: #b94a48;
+	border-color: #b94a48;
+}
+
+.input-validation-error:focus {
+	border-color: #953b39;
+	-webkit-box-shadow: 0 0 6px #d59392;
+	-moz-box-shadow: 0 0 6px #d59392;
+	box-shadow: 0 0 6px #d59392;
+}
+
+.validation-summary-errors {
+	color: #ffffff;
+	display: block;
+	border: 2px;
+	border-radius: 3px;
+	font-size: 12px;
+	background-color: #b94a48;
+	padding: 2px 5px 1px 5px;
+	margin-bottom: 2px;
+	text-align : center;
+}
+
+.validation-summary-errors > ul {
+	margin: 2px;
+	padding-left: 10px;
+}
+
+.validation-summary-valid {
+	display: none;
+}
+
+.ng-valid[required], .ng-valid.required  {
+	border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid:not(form)  {
+	border-left: 5px solid #a94442; /* red */
+}
+
+/*========== Bootstrap Alert ==========*/
+.alert-container {
+	text-align: center;
+}
+.alert-container .alert {
+	padding:10px 20px;
+	margin-bottom: 2px;
+}

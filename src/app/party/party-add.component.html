@@ -1,0 +1,64 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Party Details</h3>
+    </div>
+    <div class="panel-body">
+        <form [formGroup]="partyForm" (ngSubmit)="onSubmit(partyForm.value);" novalidate>
+            <input type="hidden" formControlName="partyID">
+            <div class="form-group">
+                <label class="control-label col-md-2">Party Code:</label>
+                <div class="col-md-4">
+                    <input class="form-control input-sm" formControlName="partyCode" placeholder="Party Code" required>
+                    <div *ngIf="partyForm.controls.partyCode.invalid && (partyForm.controls.partyCode.dirty || partyForm.controls.partyCode.touched)" class="field-validation-error">
+                        <div *ngIf="partyForm.controls.partyCode.errors.required">
+                            Party code is required.
+                        </div>
+                    </div>
+                </div>
+                <label class="control-label col-md-2">First Name:</label>
+                <div class="col-md-4">
+                    <input class="form-control input-sm" formControlName="firstName" placeholder="First Name" required>
+                    <div *ngIf="partyForm.controls.firstName.invalid && (partyForm.controls.firstName.dirty || partyForm.controls.firstName.touched)" class="field-validation-error">
+                        <div *ngIf="partyForm.controls.firstName.errors.required">
+                            First name is required.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">Last Name:</label>
+                <div class="col-md-4">
+                    <input class="form-control input-sm" formControlName="lastName" placeholder="Last Name" required>
+                    <div *ngIf="partyForm.controls.lastName.invalid && (partyForm.controls.lastName.dirty || partyForm.controls.lastName.touched)" class="field-validation-error">
+                        <div *ngIf="partyForm.controls.lastName.errors.required">
+                            Last name is required.
+                        </div>
+                    </div>
+                </div>
+                <label class="control-label col-md-2">Phone No:</label>
+                <div class="col-md-4">
+                    <input class="form-control input-sm" formControlName="phoneNo" placeholder="Phone No">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">Mobile No:</label>
+                <div class="col-md-4">
+                    <input class="form-control input-sm" formControlName="mobileNo" placeholder="Mobile No">
+                </div>
+                <label class="control-label col-md-2">Party  Types:</label>
+                <div class="col-md-4">
+                    <label *ngFor="let pt of selPartyList" class="checkbox-inline">
+                        <input type="checkbox" formControlName="selectedPartyTypes" value="pt.id"
+                               [checked]="pt.selected"> {{pt.name}}
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12" style="text-align:center;">
+                    <button type="submit" class="btn btn-primary" [disabled]="partyForm.invalid">Save</button>
+                    <button type="button" class="btn btn-primary" (click)="onSearch()">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

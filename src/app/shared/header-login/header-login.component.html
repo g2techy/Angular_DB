@@ -1,0 +1,8 @@
+<div *ngIf="isUserLoggedIn()">
+  Hello, <a routerLink="/profile" title="manage">{{loggedInUserName()}}</a>
+  <a (click)="onLogOut()">Log Out</a>
+</div>
+<div *ngIf="!isUserLoggedIn()">
+    <a (click)="onLogin()">Login</a>
+</div>
+
