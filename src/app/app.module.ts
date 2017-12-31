@@ -8,11 +8,12 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { AppRoutingModule } from "./app-routing.module";
 
 import { AppComponent } from './app.component';
-import { from } from 'rxjs/observable/from';
+import { PageNotFoundComponent } from './page-not-found.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

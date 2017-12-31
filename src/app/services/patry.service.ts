@@ -52,4 +52,12 @@ export class PartyService {
             }
         );
     }
+
+    delete(partyID : number) : Observable<number> {
+        return this.http.post<number>(this.apiUrl + 'delete?partyID=' + partyID, {})
+            .map(partyID =>{
+                return partyID;
+            }
+        );
+    }
 }

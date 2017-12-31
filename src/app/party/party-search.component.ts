@@ -58,7 +58,7 @@ export class PartySearchComponent  implements OnInit {
 
     onPageChange(event : number) {
         this.currentSearchModel.startIndex = event;
-        this.logService.log(`search model: ${JSON.stringify(this.currentSearchModel)}`);
+        this.logService.info(`search model: ${JSON.stringify(this.currentSearchModel)}`);
         this.partyService.search(this.currentSearchModel).subscribe(result => {
             this.searchResult = result;
             this.pager.init(this.currentSearchModel.pageSize, this.currentSearchModel.startIndex, 
@@ -67,8 +67,11 @@ export class PartySearchComponent  implements OnInit {
     }
     
     onDeleteParty(event : Party) : void {
-        this.logService.log(`deleted party: ${event.partyID}`);
-        this.onSubmit();
+        this.logService.info(`deleted party: ${event.partyID}`);
+        this.partyService.delete(event.partyID).subscribe( partyID => {
+            this.alertService.success(`Party '${event.firstName + ' ' + event.lastName}' deleted successfully.`);
+            this.onSubmit();
+        });
     }
 
 }

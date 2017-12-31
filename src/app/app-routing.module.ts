@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from "@angular/router";
 
 import { AuthGuard } from './services/auth-guard.service';
-
+import { PageNotFoundComponent } from './page-not-found.component';
 import { UserRoleID } from "../app/models/user-model";
 
 const appRoutes : Routes = [
@@ -12,6 +12,7 @@ const appRoutes : Routes = [
     canActivateChild : [AuthGuard], canLoad : [AuthGuard],
     data : { roles : [ UserRoleID.broker ]}
   },
+  { path : '**', component : PageNotFoundComponent }
 ];
 
 @NgModule({

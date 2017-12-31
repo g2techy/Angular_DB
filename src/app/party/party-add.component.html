@@ -3,7 +3,7 @@
         <h3 class="panel-title">Party Details</h3>
     </div>
     <div class="panel-body">
-        <form [formGroup]="partyForm" (ngSubmit)="onSubmit(partyForm.value);" novalidate>
+        <form class="form-horizontal" [formGroup]="partyForm" (ngSubmit)="onSubmit(partyForm.value);" novalidate>
             <input type="hidden" formControlName="partyID">
             <div class="form-group">
                 <label class="control-label col-md-2">Party Code:</label>
@@ -46,17 +46,18 @@
                     <input class="form-control input-sm" formControlName="mobileNo" placeholder="Mobile No">
                 </div>
                 <label class="control-label col-md-2">Party  Types:</label>
-                <div class="col-md-4">
-                    <label *ngFor="let pt of selPartyList" class="checkbox-inline">
-                        <input type="checkbox" formControlName="selectedPartyTypes" value="pt.id"
-                               [checked]="pt.selected"> {{pt.name}}
+                <div class="col-md-4" formGroupName="selectedPartyTypes">
+                    <label *ngFor="let pt of partyTypeList; let i = index" class="checkbox-inline">
+                        <input type="checkbox" name="chkPT" formControlName="{{'chk_' + pt.partyTypeID}}" value="{{pt.partyTypeID}}"> 
+                        {{pt.partyTypeName}}
                     </label>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-12" style="text-align:center;">
                     <button type="submit" class="btn btn-primary" [disabled]="partyForm.invalid">Save</button>
-                    <button type="button" class="btn btn-primary" (click)="onSearch()">Search</button>
+                    <button type="button" class="btn btn-primary" (click)="onReset()">Reset</button>
+                    <button type="button" class="btn btn-primary" (click)="onBack()">Back</button>
                 </div>
             </div>
         </form>
