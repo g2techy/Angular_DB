@@ -26,13 +26,46 @@ export class AlertService {
     success(message: string, keepAfterNavigationChange = false) {
         this.keepAfterNavigationChange = keepAfterNavigationChange;
         console.log(`AlertService.success : ${message}`);
-        this.subject.next({ type: 'success', text: message });
+        this.subject.next(
+            { type: 'success', 
+              text: message,
+              noFn : () => {
+                this.subject.next();
+              } 
+            }
+        );
     }
 
     error(message: string, keepAfterNavigationChange = false) {
         this.keepAfterNavigationChange = keepAfterNavigationChange;
         console.log(`AlertService.error : ${message}`);
-        this.subject.next({ type: 'error', text: message });
+        this.subject.next(
+            { type: 'error', 
+              text: message,
+              noFn : () => {
+                this.subject.next();
+              } 
+            }
+        );
+    }
+
+    confirm(message: string, keepAfterNavigationChange = false, noFn : () => void, yesFn : () => void) {
+        let objThis = this;
+        this.keepAfterNavigationChange = keepAfterNavigationChange;
+        console.log(`AlertService.error : ${message}`);
+        this.subject.next(
+            { type: 'confirm',
+              text: message,
+              noFn : () => {
+                objThis.subject.next();
+                noFn();
+              },
+              yesFn : () => {
+                objThis.subject.next();
+                yesFn();
+              }
+            }
+        );
     }
 
     getMessage(): Observable<any> {

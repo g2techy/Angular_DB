@@ -1,0 +1,23 @@
+.modal-centered {
+	text-align: center;
+	padding: 0!important;
+}
+	
+.modal-centered:before {
+	content: '';
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
+	margin-right: -4px;
+}
+	
+.modal-centered .modal-dialog {
+	display: inline-block;
+	text-align: left;
+	vertical-align: middle;
+}
+
+.model-alert .modal-dialog {
+    margin-top: 55px;
+    font-weight : 600;
+}

@@ -1,5 +1,37 @@
-<div *ngIf="message" [class]="'alert-container'">
-  <div [ngClass]="{ 'alert': message, 'alert-success': message.type === 'success', 'alert-danger': message.type === 'error' }">
-    {{message.text}}
+<div *ngIf="message && message?.type == 'confirm'" class="modal modal-centered" tabindex="-1" role="dialog" style="display:block!important">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
+              <h3 class="text-center">{{message.text}}</h3>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col-md-12">
+            <p class="text-center">
+              <button (click)="message.noFn()" class="btn btn-primary btn-xs">No</button>
+              <button (click)="message.yesFn()" class="btn btn-danger btn-xs">Yes</button>
+            </p>
+          </div>        
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="message && message?.type != 'confirm'" class="modal model-alert" tabindex="-1" role="dialog" style="display:block!important">
+  <div class="modal-dialog" role="document">
+    <div [ngClass]="{'modal-content': message, 'alert-success': message.type === 'success', 'alert-danger': message.type === 'error' }">
+      <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12 text-center">
+              {{message.text}}
+              <a (click)="message.noFn()" style="float:right;">&times;</a>
+            </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

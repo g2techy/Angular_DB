@@ -17,7 +17,7 @@ a {
 	outline: none;
 	padding-left: 3px;
 	padding-right: 3px;
-	text-decoration: underline;
+	text-decoration: none;
 }
 
 a:link, a:visited, a:active, a:hover {
@@ -25,7 +25,9 @@ a:link, a:visited, a:active, a:hover {
 }
 
 a:hover {
-    background-color: #c7d1d6;
+	background-color: #c7d1d6;
+	cursor: pointer;
+	text-decoration: none;
 }
 
 header, footer, hgroup, nav, section {
@@ -322,4 +324,7 @@ input-sm {
 	font-weight: 600;
 	padding-top: 7px;
 	margin-bottom: 0;
+}
+.modal {
+	background-color: rgba(0,0,0, 0.2);
 }

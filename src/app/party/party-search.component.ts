@@ -68,10 +68,16 @@ export class PartySearchComponent  implements OnInit {
     
     onDeleteParty(event : Party) : void {
         this.logService.info(`deleted party: ${event.partyID}`);
-        this.partyService.delete(event.partyID).subscribe( partyID => {
-            this.alertService.success(`Party '${event.firstName + ' ' + event.lastName}' deleted successfully.`);
-            this.onSubmit();
+        this.alertService.confirm("Are you sure you want to delete this party?", false, () => {
+            this.logService.info('noFn');
+        }, () => {
+            this.logService.info('yesFn');
+            this.partyService.delete(event.partyID).subscribe( partyID => {
+                this.alertService.success(`Party '${event.firstName + ' ' + event.lastName}' deleted successfully.`);
+                this.onSubmit();
+            });
         });
+        
     }
 
 }

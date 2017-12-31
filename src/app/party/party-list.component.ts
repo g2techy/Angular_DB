@@ -23,8 +23,6 @@ export class PartyListComponent implements OnInit {
     }
 
     onDelete(party : Party) : void {
-        if(window.confirm(`Are you sure you want to delete '${party.firstName + ' ' + party.lastName}' party?`)){
-            this.deleteParty.emit(party);
-        }
+        this.deleteParty.emit(party);
     }
 }

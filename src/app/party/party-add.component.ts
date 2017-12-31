@@ -7,7 +7,6 @@ import { PartyService } from "../services/patry.service";
 import { AlertService } from '../services/alert-service.service';
 import { LogService } from "../helpers/logging/log.service";
 import { Party, PartyType } from '../models/party-model';
-import { setTimeout } from 'timers';
 
 @Component({
     selector : 'app-party-add',
