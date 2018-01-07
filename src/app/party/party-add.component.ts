@@ -54,6 +54,8 @@ export class PartyAddComponent implements OnInit {
                 });
             }else {
                 this.model = new Party();
+                this.model.partyID = 0;
+                this.model.selectedPartyTypes = [''];
             }
         });
     }
