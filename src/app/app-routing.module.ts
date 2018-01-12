@@ -12,6 +12,10 @@ const appRoutes : Routes = [
     canActivateChild : [AuthGuard], canLoad : [AuthGuard],
     data : { roles : [ UserRoleID.broker ]}
   },
+  { path: 'sale', loadChildren: 'app/sale/sale.module#SaleModule', canActivate : [AuthGuard],
+    canActivateChild : [AuthGuard], canLoad : [AuthGuard],
+    data : { roles : [ UserRoleID.broker ]}
+  },
   { path : '**', component : PageNotFoundComponent }
 ];
 

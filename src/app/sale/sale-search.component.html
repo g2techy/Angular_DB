@@ -1,0 +1,51 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            Search sales details</h3>
+    </div>
+    <div class="panel-body">
+        <form [formGroup]="searchForm" (submit)="onSubmit()" novalidate>
+            <div class="form-group">
+                <label class="control-label col-md-2">Start Date:</label>
+                <div class="col-md-4">
+                    <app-datepicker formControlName="startDate"></app-datepicker>
+                </div>
+                <label class="control-label col-md-2">Start Date:</label>
+                <div class="col-md-4">
+                    <app-datepicker formControlName="endDate"></app-datepicker>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">Buyer:</label>
+                <div class="col-md-4">
+                    <select class="form-control date-picker" formControlName="buyerID">
+                        <option value="0">Buyer</option>
+                        <option *ngFor="let item of buyerList" value="{{item.partyID}}" >{{item.partyName}}</option>
+                    </select>
+                </div>
+                <label class="control-label col-md-2">Saller:</label>
+                <div class="col-md-4">
+                    <select class="form-control" formControlName="sallerID">
+                        <option value="0">Saller</option>
+                        <option *ngFor="let item of sallerList" value="{{item.partyID}}" >{{item.partyName}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">Ref No:</label>
+                <div class="col-md-4">
+                    <input class="form-control" formControlName="refNo">
+                </div>
+                <div class="col-md-offset-2 col-md-4" style="text-align:center;">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                    <button type="button" class="btn btn-primary" (click)="onReset()">Reset</button>
+                    <button type="button" class="btn btn-primary" (click)="onAdd()">Add</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <app-pager (pageSize)="pageSize" (onPageChange)="onPageChange($event)" #pager></app-pager>
+    <app-sale-list [searchResult]="searchResult" (deleteParty)="onDeleteParty($event)" ></app-sale-list>
+</div>

@@ -1,0 +1,58 @@
+<div class="panel panel-info" *ngIf="searchResult && searchResult.salesList.length > 0">
+    <div class="panel-body">
+        <table class="table table-bordred table-striped">
+            <thead>
+                <tr>
+                    <th>Ref No</th>
+                    <th>Sale Date</th>
+                    <th>Saller</th>
+                    <th>Buyer</th>
+                    <th>Total Wt</th>
+                    <th>Rejection Wt</th>
+                    <th>Selection Wt</th>
+                    <th>Unit Price</th>
+                    <th>Less (%)</th>
+                    <th>Net Sale Amount</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let sale of searchResult.salesList">
+                    <td>
+                        <a [routerLink]="['/sale/edit', sale.saleID, {refNo : sale.refNo}]">{{sale.refNo}}</a>
+                    </td>
+                    <td>{{sale.saleDate | date:'dd/MM/yyyy'}}</td>
+                    <td>{{sale.saller}}</td>
+                    <td>{{sale.buyer}}</td>
+                    <td class="numeric">{{sale.totalWeight | number : '1.2-2'}}</td>
+                    <td class="numeric">{{sale.rejectionWt | number : '1.2-2'}}</td>
+                    <td class="numeric">{{sale.selectionWt | number : '1.2-2'}}</td>
+                    <td class="numeric">{{sale.unitPrice | number : '1.2-2'}}</td>
+                    <td class="numeric">{{sale.lessPer | number : '1.2-2'}}</td>
+                    <td class="numeric">{{sale.netSaleAmount | number : '1.2-2'}}</td>
+                    <td>
+                        <div class="status-circle {{getStatusClass(sale)}}" (mouseover)="onMouseOver($event.currentTarget)"></div>
+                        <div class="pop-content" style="display:none">
+                            <b>Due Days :</b> {{sale.dueDays}} <br />
+                            <b>Total Brokerage :</b> {{sale.totalBrokerage}} <br />
+                            <b>Total Payment :</b> {{sale.totalPayAmount}} <br />
+                            <b>Payment Date :</b> {{sale.payDate | date:'dd/MM/yyyy'}} <br />
+                            <b>Status:</b> {{sale.status}}
+                        </div>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger btn-xs"
+                            (click)="onDelete(sale)">X
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="panel panel-info" *ngIf="searchResult && searchResult.salesList.length == 0">
+    <div class="panel-body">
+        <div class="empty-result">No records found.</div>
+    </div>
+</div>

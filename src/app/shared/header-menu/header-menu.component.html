@@ -15,13 +15,24 @@
           <a routerLink="/dashboard">Dashboard</a>
         </li>        
         <li *ngIf="isUserLoggedIn() && isBroker()" class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Buyer <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Party <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li>
               <a [routerLink]="['/party']">Search</a>
             </li>
             <li>
               <a [routerLink]="['/party/add']">Add</a>
+            </li>
+          </ul>
+        </li>
+        <li *ngIf="isUserLoggedIn() && isBroker()" class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sale <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li>
+              <a [routerLink]="['/sale']">Search</a>
+            </li>
+            <li>
+              <a [routerLink]="['/sale/add']">Add</a>
             </li>
           </ul>
         </li>

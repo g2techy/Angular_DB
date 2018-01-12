@@ -1,5 +1,11 @@
 import { Pager } from "./base.model";
 
+export const PartyTypeID = {
+    saller : 1,
+    buyer : 2,
+    broker : 3,
+    loanBorrower : 4
+}
 export class PartyType {
     partyTypeID : number;
     partyTypeName : string;
