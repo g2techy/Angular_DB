@@ -1,1 +1,114 @@
-<h2>Add...</h2>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            Sales Details</h3>
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal" [formGroup]="saleForm" (submit)="onSubmit()" novalidate>
+            <input type="hidden" formControlName="saleID">
+            <div class="form-group">
+                <label class="control-label col-md-1">Sale Date:</label>
+                <div class="col-md-3">
+                    <app-datepicker formControlName="saleDate"></app-datepicker>
+                    <div *ngIf="saleDate.invalid && (saleDate.dirty || saleDate.touched)" class="field-validation-error">
+                        <div *ngIf="saleDate.errors.required">
+                            Sale date is required.
+                        </div>
+                    </div>
+                </div>
+                <label class="control-label col-md-1">Saller:</label>
+                <div class="col-md-3">
+                    <select class="form-control" formControlName="sallerID">
+                        <option *ngFor="let item of sallerList" value="{{item.partyID}}" >{{item.partyName}}</option>
+                    </select>
+                    <div *ngIf="sallerID.invalid && (sallerID.dirty || sallerID.touched)" class="field-validation-error">
+                        <div *ngIf="sallerID.errors.required">
+                            Saller is required.
+                        </div>
+                    </div>
+                </div>
+                <label class="control-label col-md-1">Buyer:</label>
+                <div class="col-md-3">
+                    <select class="form-control" formControlName="buyerID">
+                        <option *ngFor="let item of buyerList" value="{{item.partyID}}" >{{item.partyName}}</option>
+                    </select>
+                    <div *ngIf="buyerID.invalid && (buyerID.dirty || buyerID.touched)" class="field-validation-error">
+                        <div *ngIf="buyerID.errors.required">
+                            Buyer is required.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-1">Total Weight:</label>
+                <div class="col-md-3">
+                    <input class="form-control" formControlName="totalWeight" type="number" (change)="calcNetSalAmt()">
+                    <div *ngIf="totalWeight.invalid && (totalWeight.dirty || totalWeight.touched)" class="field-validation-error">
+                        <div *ngIf="totalWeight.errors.required">
+                            Total weight is required.
+                        </div>
+                    </div>
+                </div>
+                <label class="control-label col-md-1">Rejection Weight:</label>
+                <div class="col-md-3">
+                    <input class="form-control" formControlName="rejectionWeight" type="number" (change)="calcNetSalAmt()">
+                    <div *ngIf="rejectionWeight.invalid && (rejectionWeight.dirty || rejectionWeight.touched)" class="field-validation-error">
+                        <div *ngIf="rejectionWeight.errors.required">
+                            Rejection weight is required.
+                        </div>
+                    </div>
+                </div>
+                <label class="control-label col-md-1">Selection Weight:</label>
+                <div class="col-md-3">
+                    <input class="form-control" formControlName="selectionWeight" readonly>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-1">Unit Price:</label>
+                <div class="col-md-3">
+                    <input class="form-control" formControlName="unitPrice" type="number" (change)="calcNetSalAmt()">
+                    <div *ngIf="unitPrice.invalid && (unitPrice.dirty || unitPrice.touched)" class="field-validation-error">
+                        <div *ngIf="unitPrice.errors.required">
+                            Unit price is required.
+                        </div>
+                    </div>
+                </div>
+                <label class="control-label col-md-1">Less %:</label>
+                <div class="col-md-3">
+                    <input class="form-control" formControlName="lessPer" type="number" (change)="calcNetSalAmt()">
+                    <div *ngIf="lessPer.invalid && (lessPer.dirty || lessPer.touched)" class="field-validation-error">
+                        <div *ngIf="lessPer.errors.required">
+                             Less % is required.
+                        </div>
+                        <div *ngIf="lessPer.errors.max">
+                            Maximum % can be 99.
+                        </div>
+                    </div>
+                </div>
+                <label class="control-label col-md-1">Net Sale Amount:</label>
+                <div class="col-md-3">
+                    <input class="form-control" formControlName="netSaleAmount" readonly>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-1">Due Days:</label>
+                <div class="col-md-3">
+                    <input class="form-control" formControlName="dueDays">
+                    <div *ngIf="dueDays.invalid && (dueDays.dirty || dueDays.touched)" class="field-validation-error">
+                        <div *ngIf="dueDays.errors.required">
+                            Due days is required.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8" style="text-align:center;">
+                    <button *ngIf="saleStatus==3" (click)="onClose()" type="button" class="btn btn-primary">Close</button>
+                    <button *ngIf="saleStatus!=4" [disabled]="saleForm.invalid" type="submit" class="btn btn-primary">Save</button>
+                    <button *ngIf="saleStatus!=4" (click)="onReset()" type="button" class="btn btn-primary">Reset</button>
+                    <button (click)="onBack()" type="button" class="btn btn-primary">Search</button>
+                </div>
+            </div>                
+        </form>
+    </div>
+</div>
+<app-sale-payment *ngIf="showChildComp" (saleAddModel)="model" (onPaymentUpdate)="onPayUpdate($event)" #payment></app-sale-payment>
+<app-sale-brok *ngIf="showChildComp" (saleAddModel)="model" #brokerage></app-sale-brok>

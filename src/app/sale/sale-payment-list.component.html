@@ -1,0 +1,23 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>Pay Date</th>
+            <th class="numeric">Pay Amount</th>
+            <th>Courier From</th>
+            <th>Courier To</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let payment of paymentList">
+            <td>{{ payment.payDate | date:'dd/MM/yyyy' }}</td>
+            <td class="numeric">{{ payment.payAmount | number : '1.2-2' }}</td>
+            <td>{{ payment.courierFrom }}</td>
+            <td>{{ payment.courierTo }}</td>
+            <td class="numeric" *ngIf="saleStatus!=4">
+                <button (click)="onEdit(payment)" type="button" class="btn btn-success btn-xs">Edit</button>
+                <button (click)="onDelete(payment)" type="button" class="btn btn-danger btn-xs">X</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

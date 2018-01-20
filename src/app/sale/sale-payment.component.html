@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    Payment Details : 
+                    Outstanding payment => <em>{{ outPayment | number : '1.2-2'}} = {{ netSaleAmt | number : '1.2-2' }} - {{ totalPayment | number : '1.2-2' }} </em>
+                </h3>
+            </div>
+            <div class="panel-body">
+                <form *ngIf="!paymentForm.disabled" class="form-horizontal" [formGroup]="paymentForm" (submit)="onSubmit()" novalidate>
+                    <input type="hidden" formControlName="payID">
+                    <div class="form-group input-group-sm">
+                        <div class="col-md-2">
+                            <app-datepicker formControlName="payDate" placeholder="Payment Date"></app-datepicker>
+                        </div>
+                        <div class="col-md-2">
+                            <input class="form-control" formControlName="payAmount" type="number" placeholder="Payment Amount">
+                        </div>
+                        <div class="col-md-3">
+                            <input class="form-control" formControlName="courierFrom" placeholder="Courier From">
+                        </div>
+                        <div class="col-md-3">
+                            <input class="form-control" formControlName="courierTo" placeholder="Courier To">
+                        </div>
+                        <div class="col-md-2">
+                            <button [disabled]="paymentForm.invalid" type="submit" class="btn btn-success btn-xs">Add</button>
+                            <button (click)="onReset()" type="button" class="btn btn-success btn-xs">Reset</button>
+                        </div>
+                    </div>
+                </form>
+                <div id="divPayGrid">
+                    <app-sale-payment-list (saleStatus)="saleStatus" (paymentList)="model.paymentList" (editPayment)="onEdit($event)" (deletePayment)="onDelete($event)" #payList></app-sale-payment-list>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-info" id="pnlBrokerage">
+            <div class="panel-heading">
+                <h3 class="panel-title">Brokerage Details</h3>
+            </div>
+            <div class="panel-body">
+                <form *ngIf="!brokerageForm.disabled" class="form-inline" [formGroup]="brokerageForm" (submit)="onSubmit()" novalidate>
+                    <input type="hidden" formControlName="bdid">
+                    <div class="form-group input-group-sm">
+                        <select class="form-control" formControlName="brokerID">
+                            <option *ngFor="let item of brokerList" value="{{item.partyID}}" >{{item.partyName}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group input-group-sm">
+                        <input class="form-control" formControlName="brokerage" type="number" placeholder="Brokerage">
+                    </div>
+                    <button [disabled]="brokerageForm.invalid" type="submit" class="btn btn-success btn-xs">Add</button>
+                    <button (click)="onReset()" type="button" class="btn btn-success btn-xs">Reset</button>
+                </form>
+                <div id="divBrokGrid">
+                    <app-sale-brok-list (brokerageList)="brokerageList" (editBrokerage)="onEdit($event)" (deleteBrokerage)="onDelete($event)" (brokPayment)="onPayAckw($event)" #brokerageList></app-sale-brok-list>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

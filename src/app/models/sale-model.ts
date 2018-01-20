@@ -47,9 +47,56 @@ export class SaleAdd {
     unitPrice : number;
     netSaleAmount : number;
     lessPer : number;
+    status : number;
 }
 
 export class Party {
     partyID : number;
     partyName : string;
+}
+
+export class SalePaymentAdd {
+    saleID : number;
+    payID : number;
+    payDate : Date;
+    payAmount : number;
+    courierFrom : string;
+    courierTo : string;
+}
+
+export class SalePayment {
+    payment : SalePaymentAdd;
+    paymentList : SalePaymentAdd[]
+}
+
+export class SaleBrokerage {
+    bdid : number;
+    saleID : number;
+    brokerID : number;
+    brokerName : string;
+    brokerage : number;
+    brokerageAmount : number;
+    isPaid : boolean;
+    payDate : Date;
+    payComments : string;
+}
+
+export class SaleBrokerageAdd {
+    bDID : number;
+    saleID : number;
+    brokerID : number;
+    brokerage : number;
+}
+
+export class SaleBrokPayment {
+    bDID : number;
+    payDate : Date;
+    payComments : string;
+}
+
+export enum SaleStatus  {
+    new = 1,
+    partialPaid = 2,
+    paid = 3,
+    closed = 4
 }

@@ -36,7 +36,7 @@
                         <div class="pop-content" style="display:none">
                             <b>Due Days :</b> {{sale.dueDays}} <br />
                             <b>Total Brokerage :</b> {{sale.totalBrokerage}} <br />
-                            <b>Total Payment :</b> {{sale.totalPayAmount}} <br />
+                            <b>Total Payment :</b> {{sale.totalPayAmount | number : '1.2-2'}} <br />
                             <b>Payment Date :</b> {{sale.payDate | date:'dd/MM/yyyy'}} <br />
                             <b>Status:</b> {{sale.status}}
                         </div>

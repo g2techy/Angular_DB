@@ -10,7 +10,7 @@
                 <div class="col-md-4">
                     <app-datepicker formControlName="startDate"></app-datepicker>
                 </div>
-                <label class="control-label col-md-2">Start Date:</label>
+                <label class="control-label col-md-2">End Date:</label>
                 <div class="col-md-4">
                     <app-datepicker formControlName="endDate"></app-datepicker>
                 </div>
@@ -18,7 +18,7 @@
             <div class="form-group">
                 <label class="control-label col-md-2">Buyer:</label>
                 <div class="col-md-4">
-                    <select class="form-control date-picker" formControlName="buyerID">
+                    <select class="form-control" formControlName="buyerID">
                         <option value="0">Buyer</option>
                         <option *ngFor="let item of buyerList" value="{{item.partyID}}" >{{item.partyName}}</option>
                     </select>

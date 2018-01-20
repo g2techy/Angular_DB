@@ -1,0 +1,30 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>Broker</th>
+            <th class="numeric">Brokerage (%)</th>
+            <th class="numeric">Brokerage Amount</th>
+            <th>Payment Date</th>
+            <th>Comments</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let brokerage of brokerageList">
+            <td>{{ brokerage.brokerName }}</td>
+            <td class="numeric">{{ brokerage.brokerage | number : '1.2-2' }}</td>
+            <td class="numeric">{{ brokerage.brokerageAmount | number : '1.2-2' }}</td>
+            <td>{{ displayDate(brokerage.payDate) }}</td>
+            <td>{{ brokerage.payComments }}</td>
+            <td class="numeric" *ngIf="saleStatus!=4">
+                <button *ngIf="!brokerage.isPaid" (click)="onPay(brokerage)" type="button" class="btn btn-success btn-xs">Pay</button>
+                <button *ngIf="!brokerage.isPaid" (click)="onEdit(brokerage)" type="button" class="btn btn-success btn-xs">Edit</button>
+            </td>
+            <td class="numeric" *ngIf="saleStatus!=4">
+                <button (click)="onDelete(brokerage)" type="button" class="btn btn-danger btn-xs">X</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<app-sale-brok-payment (onPayAckw)="onPayAckw($event)" #brokPayment></app-sale-brok-payment>

@@ -6,7 +6,8 @@ import { environment } from "../../environments/environment";
 import { AuthService } from './auth.service';
 import { LogService } from "../helpers/logging/log.service";
 
-import { SaleSearch, SaleSearchResult, Sale, Party, SaleAdd } from '../models/sale-model';
+import { SaleSearch, SaleSearchResult, Sale, Party, SaleAdd, SalePayment, SalePaymentAdd,
+         SaleBrokerage, SaleBrokerageAdd, SaleBrokPayment } from '../models/sale-model';
 
 @Injectable()
 export class SaleService {
@@ -60,4 +61,68 @@ export class SaleService {
         );
     }
 
+    close(saleID : number) : Observable<number> {
+        return this.http.post<number>(this.apiUrl + 'close?saleID=' + saleID, {})
+            .map(saleID =>{
+                return saleID;
+            }
+        );
+    }
+
+    payment(saleID : number) : Observable<SalePayment> {
+        return this.http.get<SalePayment>(this.apiUrl + 'payment?saleID=' + saleID, {}).
+            map(data => {
+                return data;
+            }
+        );
+    }
+
+    addPayment(model : SalePaymentAdd) : Observable<number> {
+        return this.http.post<number>(this.apiUrl + 'addPayment', model)
+            .map(payID =>{
+                return payID;
+            }
+        );
+    }
+
+    deletePayment(payID : number) : Observable<number> {
+        return this.http.post<number>(this.apiUrl + 'deletePayment?payID=' + payID, {})
+            .map(id =>{
+                console.log(` payID: ${id}`);
+                return id;
+            }
+        );
+    }
+
+    brokerage(saleID : number) : Observable<SaleBrokerage[]> {
+        return this.http.get<SaleBrokerage[]>(this.apiUrl + 'brokerage?saleID=' + saleID, {}).
+            map(data => {
+                return data;
+            }
+        );
+    }
+    
+    addBrokerage(model : SaleBrokerageAdd) : Observable<number> {
+        return this.http.post<number>(this.apiUrl + 'addBrokerage', model)
+            .map(bdID =>{
+                return bdID;
+            }
+        );
+    }
+
+    deleteBrokerage(bdID : number) : Observable<number> {
+        return this.http.post<number>(this.apiUrl + 'deleteBrokerage?bDID=' + bdID, {})
+            .map(id =>{
+                return id;
+            }
+        );
+    }
+
+    brokeragePayment(model : SaleBrokPayment) : Observable<number> {
+        return this.http.post<number>(this.apiUrl + 'brokPayment', model)
+            .map(bdID =>{
+                return bdID;
+            }
+        );
+    }
 }
