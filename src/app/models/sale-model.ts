@@ -100,3 +100,17 @@ export enum SaleStatus  {
     paid = 3,
     closed = 4
 }
+
+export class SaleReport {
+    startDate : string;
+    endDate : string;
+    sallerID : number;
+    buyerID : number;
+    status : number;
+    dueDays : number;
+}
+
+export class Status {
+    statusID : number;
+    statusName : string;
+}

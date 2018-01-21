@@ -1,13 +1,14 @@
 import { Injectable, Injector } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
 
 import { environment } from "../../environments/environment";
 import { AuthService } from './auth.service';
 import { LogService } from "../helpers/logging/log.service";
 
+import { AppConstants } from "../models/constants";
 import { SaleSearch, SaleSearchResult, Sale, Party, SaleAdd, SalePayment, SalePaymentAdd,
-         SaleBrokerage, SaleBrokerageAdd, SaleBrokPayment } from '../models/sale-model';
+         SaleBrokerage, SaleBrokerageAdd, SaleBrokPayment, SaleReport, Status } from '../models/sale-model';
 
 @Injectable()
 export class SaleService {
@@ -19,7 +20,7 @@ export class SaleService {
 
     private log(message : any) :void {
         const _logService = this.injector.get(LogService);
-        _logService.info('partyServie : ' + message);
+        _logService.info('SaleService : ' + message);
     }
 
     search(model : SaleSearch) : Observable<SaleSearchResult> {
@@ -37,6 +38,15 @@ export class SaleService {
             }
         );
     }
+
+    getStatusList() : Observable<Status[]> {
+        return this.http.get<Status[]>(this.apiUrl + 'statusList')
+            .map(data => {
+                return data;
+            }
+        );
+    }
+
     getSale(saleID : number) : Observable<SaleAdd> {
         return this.http.get<SaleAdd>(this.apiUrl + 'sale?saleID=' + saleID)
             .map( sale => {
@@ -125,4 +135,26 @@ export class SaleService {
             }
         );
     }
+
+    report(model : SaleReport) : Observable<any> {
+        return this.http.post<any>(this.apiUrl + 'report', model)
+            .map(data =>{
+                return data;
+            }
+        );
+    }
+
+    downloadReport(model : SaleReport) : Observable<boolean> {
+        let options = {
+            headers : new HttpHeaders().set(AppConstants.downloadFileHeaderKey,"")
+        };
+        return this.http.post<Blob>(this.apiUrl + 'downloadReport', model, options)
+            .map((buffer ) => {
+                let blob = new Blob([buffer], { type: AppConstants.excelContentType });
+                window.open(window.URL.createObjectURL(blob));  
+                return true;
+            }
+        );
+    }
+    
 }

@@ -2,8 +2,8 @@ import { Injectable, Injector} from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse,
          HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { RequestOptions } from '@angular/http';
 
+import { AppConstants } from "../models/constants";
 import { AuthService } from '../services/auth.service';
 
 @Injectable()
@@ -23,7 +23,11 @@ export class CustomInterceptor implements HttpInterceptor {
             }
             req = req.clone({ headers: req.headers.set('Content-Type', contentType) });
         }
-        req = req.clone({ headers: req.headers.set('Accept', 'application/json') });
+        if(req.headers.has(AppConstants.downloadFileHeaderKey)){
+            req = req.clone({ headers: req.headers.set('Accept', 'application/json'), responseType : 'blob' });
+        }else {
+            req = req.clone({ headers: req.headers.set('Accept', 'application/json') });
+        }
         return next.handle(req);
     }
 

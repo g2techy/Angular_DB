@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SaleComponent } from './sale.component';
 import { SaleSearchComponent } from './sale-search.component';
 import { SaleAddComponent } from './sale-add.component';
+import { SaleReportComponent } from './sale-report.component';
 
 const saleRoutes : Routes = [
     {
@@ -21,6 +22,10 @@ const saleRoutes : Routes = [
             {
                 path: 'edit/:id',
                 component : SaleAddComponent
+            },
+            {
+                path: 'report',
+                component : SaleReportComponent
             }
         ]
     }

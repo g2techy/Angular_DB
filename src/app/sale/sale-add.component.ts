@@ -111,6 +111,8 @@ export class SaleAddComponent implements OnInit {
     
     private onReset() : void {
         this.saleForm.reset(this.model);
+        this.calcNetSalAmt();
+        this.setDateToDP();
     }
     private onSubmit() : void {
         this.model = this.saleForm.value;

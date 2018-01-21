@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, TitleCasePipe } from '@angular/common';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from "@angular/router";
 
@@ -13,6 +13,7 @@ import { HeaderMenuComponent } from './header-menu/header-menu.component';
 import { HeaderLoginComponent } from './header-login/header-login.component';
 import { AlertComponent } from './alert/alert.component';
 import { PagerComponent } from './pager/pager.component';
+import { DataGridComponent } from './datagrid/datagrid.component';
 
 @NgModule({
   imports: [
@@ -27,11 +28,13 @@ import { PagerComponent } from './pager/pager.component';
     HeaderMenuComponent,
     HeaderLoginComponent,
     AlertComponent,
-    PagerComponent
+    PagerComponent,
+    DataGridComponent,
   ],
   exports : [ AutoFocusDirective,
     HeaderComponent, FooterComponent, HeaderMenuComponent, 
-    HeaderLoginComponent, AlertComponent, PagerComponent 
-  ]
+    HeaderLoginComponent, AlertComponent, PagerComponent, DataGridComponent
+  ],
+  providers : [ TitleCasePipe ]
 })
 export class SharedModule { }

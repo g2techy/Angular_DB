@@ -1,0 +1,16 @@
+<div *ngIf="dataSource" class="panel panel-info">
+    <div class="panel-body">
+        <table class="table table-bordred table-striped">
+            <thead>
+                <tr>
+                    <th *ngFor="let col of dataColumns">{{tcPipe.transform(col)}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let row of dataSource">
+                    <td *ngFor="let col of dataColumns">{{row[col]}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
