@@ -17,9 +17,11 @@
                     <td>{{party.lastName}}</td>
                     <td>{{party.selectedPartyTypes}}</td>
                     <td class="numeric">
-                        <button type="button" class="btn btn-success btn-xs" (click)="onEdit(party)">Edit
+                        <button type="button" class="btn btn-success btn-xs" (click)="onEdit(party)">
+                            <span class="glyphicon glyphicon-edit"></span>
                         </button>
-                        <button type="button" class="btn btn-danger btn-xs" (click)="onDelete(party)">X
+                        <button type="button" class="btn btn-danger btn-xs" (click)="onDelete(party)">
+                            <span class="glyphicon glyphicon-trash"></span>
                         </button>
                     </td>
                 </tr>

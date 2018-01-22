@@ -4,6 +4,7 @@ import { SaleService } from '../services/sale.service';
 import { AlertService } from '../services/alert-service.service';
 import { LogService } from '../helpers/logging/log.service';
 
+import { AppConstants } from '../models/constants';
 import { SaleAdd, SalePayment, SalePaymentAdd, SaleStatus } from '../models/sale-model';
 
 @Component({
@@ -15,6 +16,8 @@ export class SalePaymentListComponent implements OnInit {
     @Input() saleStatus : SaleStatus;
     @Output() deletePayment : EventEmitter<SalePaymentAdd>;
     @Output() editPayment : EventEmitter<SalePaymentAdd>;
+    private dateDispalyFormat = AppConstants.dateDisplayFormat;
+    private numericDisplayFormat = AppConstants.numericDisplayFormat;
 
     constructor(private injector : Injector, 
         private saleService : SaleService,

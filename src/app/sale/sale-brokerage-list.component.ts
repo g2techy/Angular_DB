@@ -6,6 +6,7 @@ import { LogService } from '../helpers/logging/log.service';
 
 import { SaleBrokeragePaymentComponent } from "./sale-brokerage-payment.component";
 
+import { AppConstants } from '../models/constants';
 import { SaleAdd, SaleBrokerage, SaleBrokPayment, SaleStatus } from '../models/sale-model';
 
 @Component({
@@ -19,6 +20,8 @@ export class SaleBrokerageListComponent implements OnInit {
     @Output() editBrokerage : EventEmitter<SaleBrokerage>;
     @Output() brokPayment : EventEmitter<SaleBrokPayment>;
     @ViewChild('brokPayment') brokPayComp : SaleBrokeragePaymentComponent;
+    private dateDispalyFormat = AppConstants.dateDisplayFormat;
+    private numericDisplayFormat = AppConstants.numericDisplayFormat;
 
     constructor(private injector : Injector, 
         private saleService : SaleService,

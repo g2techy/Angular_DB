@@ -13,16 +13,20 @@
     <tbody>
         <tr *ngFor="let brokerage of brokerageList">
             <td>{{ brokerage.brokerName }}</td>
-            <td class="numeric">{{ brokerage.brokerage | number : '1.2-2' }}</td>
-            <td class="numeric">{{ brokerage.brokerageAmount | number : '1.2-2' }}</td>
+            <td class="numeric">{{ brokerage.brokerage | number : numericDisplayFormat }}</td>
+            <td class="numeric">{{ brokerage.brokerageAmount | number : numericDisplayFormat }}</td>
             <td>{{ displayDate(brokerage.payDate) }}</td>
             <td>{{ brokerage.payComments }}</td>
             <td class="numeric" *ngIf="saleStatus!=4">
                 <button *ngIf="!brokerage.isPaid" (click)="onPay(brokerage)" type="button" class="btn btn-success btn-xs">Pay</button>
-                <button *ngIf="!brokerage.isPaid" (click)="onEdit(brokerage)" type="button" class="btn btn-success btn-xs">Edit</button>
+                <button *ngIf="!brokerage.isPaid" (click)="onEdit(brokerage)" type="button" class="btn btn-success btn-xs">
+                    <span class="glyphicon glyphicon-edit"></span>
+                </button>
             </td>
             <td class="numeric" *ngIf="saleStatus!=4">
-                <button (click)="onDelete(brokerage)" type="button" class="btn btn-danger btn-xs">X</button>
+                <button (click)="onDelete(brokerage)" type="button" class="btn btn-danger btn-xs">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </button>
             </td>
         </tr>
     </tbody>

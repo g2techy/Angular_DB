@@ -10,13 +10,17 @@
     </thead>
     <tbody>
         <tr *ngFor="let payment of paymentList">
-            <td>{{ payment.payDate | date:'dd/MM/yyyy' }}</td>
-            <td class="numeric">{{ payment.payAmount | number : '1.2-2' }}</td>
+            <td>{{ payment.payDate | date : dateDispalyFormat }}</td>
+            <td class="numeric">{{ payment.payAmount | number : numericDisplayFormat }}</td>
             <td>{{ payment.courierFrom }}</td>
             <td>{{ payment.courierTo }}</td>
             <td class="numeric" *ngIf="saleStatus!=4">
-                <button (click)="onEdit(payment)" type="button" class="btn btn-success btn-xs">Edit</button>
-                <button (click)="onDelete(payment)" type="button" class="btn btn-danger btn-xs">X</button>
+                <button (click)="onEdit(payment)" type="button" class="btn btn-success btn-xs">
+                    <span class="glyphicon glyphicon-edit"></span>
+                </button>
+                <button (click)="onDelete(payment)" type="button" class="btn btn-danger btn-xs">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </button>
             </td>
         </tr>
     </tbody>
