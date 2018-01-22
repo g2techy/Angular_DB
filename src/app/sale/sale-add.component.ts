@@ -141,6 +141,9 @@ export class SaleAddComponent implements OnInit {
     }
     private setDateToDP():void {
         let dt : any;
+        if(this.model.saleDate == null || this.model.saleDate == ''){
+            return;
+        }
         let dtParts = this.model.saleDate.split("/");
         if(dtParts.length == 3){
             dt = {
@@ -159,7 +162,7 @@ export class SaleAddComponent implements OnInit {
         let _uPrice = +this.unitPrice.value;
         let _lPer = +this.lessPer.value;
         let _netSaleAmt = (_uPrice * _selWt) - ((_uPrice * _selWt)* _lPer/100);
-        this.netSaleAmount.setValue(_netSaleAmt);
+        this.netSaleAmount.setValue(_netSaleAmt.toFixed(2));
 
         this.model.selectionWeight = _selWt;
         this.model.netSaleAmount = _netSaleAmt;

@@ -8,7 +8,6 @@
                     <th>Last Name</th>
                     <th>Party Types</th>
                     <th></th>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -17,14 +16,10 @@
                     <td>{{party.firstName}}</td>
                     <td>{{party.lastName}}</td>
                     <td>{{party.selectedPartyTypes}}</td>
-                    <td>
-                        <button type="button" data-title="Edit" class="btn btn-success btn-xs"
-                            (click)="onEdit(party)">Edit
+                    <td class="numeric">
+                        <button type="button" class="btn btn-success btn-xs" (click)="onEdit(party)">Edit
                         </button>
-                    </td>
-                    <td>
-                        <button type="button" data-title="Are you sure you want to delete it?" class="btn btn-danger btn-xs"
-                            (click)="onDelete(party)">X
+                        <button type="button" class="btn btn-danger btn-xs" (click)="onDelete(party)">X
                         </button>
                     </td>
                 </tr>

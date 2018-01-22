@@ -8,7 +8,11 @@ import { LogService } from "../helpers/logging/log.service";
 
 import { AppConstants } from "../models/constants";
 import { SaleSearch, SaleSearchResult, Sale, Party, SaleAdd, SalePayment, SalePaymentAdd,
-         SaleBrokerage, SaleBrokerageAdd, SaleBrokPayment, SaleReport, Status } from '../models/sale-model';
+         SaleBrokerage, SaleBrokerageAdd, SaleBrokPayment, SaleReport, Status, SaleBrokerageReport } from '../models/sale-model';
+
+const reqOptions = {
+    headers : new HttpHeaders().set(AppConstants.downloadFileHeaderKey,"")
+};
 
 @Injectable()
 export class SaleService {
@@ -145,16 +149,34 @@ export class SaleService {
     }
 
     downloadReport(model : SaleReport) : Observable<boolean> {
-        let options = {
-            headers : new HttpHeaders().set(AppConstants.downloadFileHeaderKey,"")
-        };
-        return this.http.post<Blob>(this.apiUrl + 'downloadReport', model, options)
+        return this.http.post<Blob>(this.apiUrl + 'downloadReport', model, reqOptions)
             .map((buffer ) => {
-                let blob = new Blob([buffer], { type: AppConstants.excelContentType });
-                window.open(window.URL.createObjectURL(blob));  
+                this.openReportWin(buffer);
                 return true;
             }
         );
+    }
+
+    brokerageReport(model : SaleBrokerageReport) : Observable<any> {
+        return this.http.post<any>(this.apiUrl + 'brokerageReport', model)
+            .map(data =>{
+                return data;
+            }
+        );
+    }
+
+    downloadBrokerageReport(model : SaleBrokerageReport) : Observable<boolean> {
+        return this.http.post<Blob>(this.apiUrl + 'downloadBrokerageReport', model, reqOptions)
+            .map((buffer ) => {
+                this.openReportWin(buffer);
+                return true;
+            }
+        );
+    }
+
+    private openReportWin(data : any) : void {
+        let blob = new Blob([data], { type: AppConstants.excelContentType });
+        window.open(window.URL.createObjectURL(blob)); 
     }
     
 }

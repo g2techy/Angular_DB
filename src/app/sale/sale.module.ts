@@ -16,12 +16,14 @@ import { SalePaymentListComponent } from './sale-payment-list.component';
 import { SaleBrokerageComponent } from './sale-brokerage.component';
 import { SaleBrokerageListComponent } from './sale-brokerage-list.component';
 import { SaleBrokeragePaymentComponent } from './sale-brokerage-payment.component';
-import { SaleReportComponent } from './sale-report.component';
+import { SaleReportComponent } from './report/sale-report.component';
+import { SaleBrokerageReportComponent } from './report/sale-brokerage-report.component';
 
 @NgModule({
     declarations : [ SaleComponent, SaleSearchComponent, SaleListComponent, SaleAddComponent,
                      SalePaymentComponent, SalePaymentListComponent, SaleBrokerageComponent,
-                     SaleBrokerageListComponent, SaleBrokeragePaymentComponent, SaleReportComponent
+                     SaleBrokerageListComponent, SaleBrokeragePaymentComponent, SaleReportComponent,
+                     SaleBrokerageReportComponent
     ],
     imports : [ CommonModule, ReactiveFormsModule, MyDatePickerModule, SaleRoutingModule, SharedModule ],
     providers : [ SaleService ]

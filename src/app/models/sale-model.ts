@@ -114,3 +114,11 @@ export class Status {
     statusID : number;
     statusName : string;
 }
+
+export class SaleBrokerageReport {
+    startDate : string;
+    endDate : string;
+    sallerID : number;
+    buyerID : number;
+    status : number;
+}

@@ -3,19 +3,19 @@ import { FormGroup, ReactiveFormsModule, FormBuilder, Validators } from '@angula
 import { Router } from '@angular/router';
 import { Observable } from "rxjs/Observable";
 
-import { SaleService } from '../services/sale.service';
-import { AlertService } from '../services/alert-service.service';
-import { LogService } from '../helpers/logging/log.service';
+import { SaleService } from '../../services/sale.service';
+import { AlertService } from '../../services/alert-service.service';
+import { LogService } from '../../helpers/logging/log.service';
 
-import { DataGridComponent } from "../shared/datagrid/datagrid.component";
-import { SaleReport, Party, Status } from '../models/sale-model';
-import { PartyTypeID } from "../models/party-model";
+import { DataGridComponent } from "../../shared/datagrid/datagrid.component";
+import { SaleBrokerageReport, Party, Status } from '../../models/sale-model';
+import { PartyTypeID } from "../../models/party-model";
 
 @Component({
-    selector : 'app-sale-report',
-    templateUrl : './sale-report.component.html'
+    selector : 'app-sale-brok-report',
+    templateUrl : './sale-brokerage-report.component.html'
 })
-export class SaleReportComponent implements OnInit {
+export class SaleBrokerageReportComponent implements OnInit {
     private reportForm : FormGroup;
     private reportResult : any;
     private sallerList : Party[];
@@ -40,8 +40,7 @@ export class SaleReportComponent implements OnInit {
             endDate : [''],
             sallerID : [''],
             buyerID : [''],
-            status : [''],
-            dueDays : ['']
+            status : ['']
         });
     }
     private loadModel() : void {
@@ -56,17 +55,17 @@ export class SaleReportComponent implements OnInit {
         });
     }
     private onSubmit() : void {
-        let model = <SaleReport> this.reportForm.value;
+        let model = <SaleBrokerageReport> this.reportForm.value;
         model.startDate = this.getDateFromDP(this.reportForm.get('startDate').value);
         model.endDate = this.getDateFromDP(this.reportForm.get('endDate').value);
-        this.saleService.report(model).subscribe(data => {
+        this.saleService.brokerageReport(model).subscribe(data => {
             this.reportResult = data;
             this.dataGridComp.dataBind(this.reportResult);
         });
     }
     private onDownload() : void {
-        let model = <SaleReport> this.reportForm.value;
-        this.saleService.downloadReport(model).subscribe(data => {
+        let model = <SaleBrokerageReport> this.reportForm.value;
+        this.saleService.downloadBrokerageReport(model).subscribe(data => {
             if(data){
                
             }

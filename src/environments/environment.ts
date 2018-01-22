@@ -8,6 +8,6 @@ export const environment = {
   appSetting : {
       apiBasePath : "http://localhost:57687/api/",
       isDebugMode : true,
-      pageSize : 2
+      pageSize : 10
   }
 };

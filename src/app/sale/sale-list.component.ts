@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { Router } from '@angular/router';
 
+import { AppConstants } from "../models/constants";
 import { Sale, SaleSearchResult } from "../models/sale-model";
 
 @Component({
@@ -11,7 +12,9 @@ import { Sale, SaleSearchResult } from "../models/sale-model";
 export class SaleListComponent implements OnInit {
     @Input() searchResult : SaleSearchResult;
     @Output() deleteParty : EventEmitter<Sale>;
-
+    private dateDisplayFormat = AppConstants.dateDisplayFormat;
+    private numbericDisplayFormat = AppConstants.numericDisplayFormat;
+    
     constructor(private router : Router ){
         this.deleteParty = new EventEmitter<Sale>();
     }
