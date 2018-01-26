@@ -1,8 +1,17 @@
-<div class="panel panel-info" *ngIf="searchResult && searchResult.salesList.length > 0">
-    <div class="panel-body">
+<div class="panel panel-info">
+    <div class="panel-heading" style="text-align:center;">
+        <h3 class="panel-title">
+            Due payments or payments will be due in comming 7 days
+        </h3>
+        <div style="display:inline-block;position: absolute; right: 10px; top: 40px;">
+            <app-pager (pageSize)="pageSize" (onPageChange)="onPageChange($event)" #pager></app-pager>
+        </div>
+    </div>
+    <div class="panel-body"  *ngIf="searchResult && searchResult.salesList.length > 0">
         <table class="table table-bordred table-striped">
             <thead>
                 <tr>
+                    <th></th>
                     <th>Ref No</th>
                     <th>Sale Date</th>
                     <th>Saller</th>
@@ -13,12 +22,15 @@
                     <th class="numeric">Unit Price</th>
                     <th class="numeric">Less (%)</th>
                     <th class="numeric">Net Sale Amount</th>
-                    <th></th>
+                    <th>Due Date</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let sale of searchResult.salesList">
+                    <td>
+                        <div class="status-circle {{getStatusClass(sale)}}"></div>
+                    </td>
                     <td>
                         <a [routerLink]="['/sale/edit', sale.saleID, {refNo : sale.refNo}]">{{sale.refNo}}</a>
                     </td>
@@ -31,28 +43,22 @@
                     <td class="numeric">{{sale.unitPrice | number : numbericDisplayFormat}}</td>
                     <td class="numeric">{{sale.lessPer | number : numbericDisplayFormat}}</td>
                     <td class="numeric">{{sale.netSaleAmount | number : numbericDisplayFormat}}</td>
+                    <td>{{sale.dueDate | date : dateDisplayFormat}}</td>
                     <td>
-                        <div class="status-circle {{getStatusClass(sale)}}" (mouseover)="onMouseOver($event.currentTarget)"></div>
+                        <a href="#" (mouseover)="onMouseOver($event.currentTarget)">...</a>
                         <div class="pop-content" style="display:none">
                             <b>Due Days :</b> {{sale.dueDays}} <br />
                             <b>Total Brokerage :</b> {{sale.totalBrokerage}} <br />
                             <b>Total Payment :</b> {{sale.totalPayAmount | number : numbericDisplayFormat}} <br />
-                            <b>Payment Date :</b> {{displayDate(sale.payDate)}} <br />
+                            <b>Payment Date :</b> {{ displayDate(sale.payDate)}} <br />
                             <b>Status:</b> {{sale.status}}
                         </div>
-                    </td>
-                    <td>
-                        <button type="button" class="btn btn-danger btn-xs" (click)="onDelete(sale)">
-                            <span class="glyphicon glyphicon-trash"></span>
-                        </button>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
-</div>
-<div class="panel panel-info" *ngIf="searchResult && searchResult.salesList.length == 0">
-    <div class="panel-body">
+    <div class="panel-body" *ngIf="searchResult && searchResult.salesList.length == 0">
         <div class="empty-result">No records found.</div>
     </div>
 </div>

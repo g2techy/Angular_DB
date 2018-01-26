@@ -1,1 +1,26 @@
-<h1>Dashboard</h1>
+<div class="row">
+    <div class="col-md-12">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#sale" data-toggle="tab">Sale</a></li>
+            <li><a href="#payments" data-toggle="tab" (click)="onTabActive(1)" >Payments</a></li>
+            <li><a href="#brokerage" data-toggle="tab" (click)="onTabActive(2)">Brokerage</a></li>
+            <li><a href="#loan" data-toggle="tab" (click)="onTabActive(3)">Loan</a></li>
+        </ul>
+        <div class="tab-content">
+            <div id="sale" class="tab-pane fade in active">
+                <app-chart (chartModel)="chartModels[0]" #saleChart></app-chart>
+            </div>
+            <div id="payments" class="tab-pane fade">
+                <app-dashboard-payment #duePayComp></app-dashboard-payment>
+            </div>
+            <div id="brokerage" class="tab-pane fade">
+                <app-chart (chartModel)="chartModels[1]" #brokChart></app-chart>
+                <app-chart (chartModel)="chartModels[2]" #brokPieChart></app-chart>
+            </div>
+            <div id="loan" class="tab-pane fade">
+                <app-chart (chartModel)="chartModels[3]" #loanChart></app-chart>
+                <app-chart (chartModel)="chartModels[4]" #loanChart2></app-chart>
+            </div>
+        </div>
+    </div>
+</div>

@@ -170,7 +170,7 @@ h5 a:link, h5 a:visited, h5 a:active {
 }
 .content-wrapper {
 	margin: 0 auto;
-	background-color: #efeeef;
+	/* background-color: #efeeef; */
 }
 
 #body {

@@ -6,7 +6,7 @@ import { LogService } from '../helpers/logging/log.service';
 
 import { SaleBrokeragePaymentComponent } from "./sale-brokerage-payment.component";
 
-import { AppConstants } from '../models/constants';
+import { AppConstants, GlobalLib } from '../models/constants';
 import { SaleAdd, SaleBrokerage, SaleBrokPayment, SaleStatus } from '../models/sale-model';
 
 @Component({
@@ -54,10 +54,6 @@ export class SaleBrokerageListComponent implements OnInit {
     }
 
     private displayDate(dt : Date) : string {
-        let newDt = new Date(dt);
-        if(newDt.getFullYear() == 1900){
-            return '';
-        }
-        return newDt.getDate() + '/' + (newDt.getMonth() + 1) + '/' + newDt.getFullYear();
+        return GlobalLib.displayDate(dt);
     }
 }

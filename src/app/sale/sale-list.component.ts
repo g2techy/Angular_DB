@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { Router } from '@angular/router';
 
-import { AppConstants } from "../models/constants";
+import { AppConstants, GlobalLib } from "../models/constants";
 import { Sale, SaleSearchResult } from "../models/sale-model";
 
 @Component({
@@ -41,5 +41,9 @@ export class SaleListComponent implements OnInit {
             return 'status-over-due';
         }
         return `status-${sale.status.replace(' ','-').toLowerCase()}`;
+    }
+
+    private displayDate(dt : Date) : string {
+        return GlobalLib.displayDate(dt);
     }
 }
