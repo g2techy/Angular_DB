@@ -9,5 +9,7 @@ footer {
 
 footer .footer-container {
     text-align: center;
-    background-color: #7ac0da;
+	background-color: #7ac0da;
+	border: 1px solid #7ac0da;
+    border-radius: 5px;
 }
