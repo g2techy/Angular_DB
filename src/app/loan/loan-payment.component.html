@@ -1,0 +1,42 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    Payment Details:
+                </h3>
+            </div>
+            <div class="panel-body">
+                <form *ngIf="!paymentForm.disabled" class="form-horizontal" [formGroup]="paymentForm" (submit)="onSubmit()" novalidate>
+                    <input type="hidden" formControlName="loanPayID">
+                    <div class="form-group input-group-sm">
+                        <div class="col-md-2">
+                            <app-datepicker formControlName="payDate" placeholder="Payment Date"></app-datepicker>
+                        </div>
+                        <div class="col-md-2">
+                            <input class="form-control" formControlName="payAmount" type="number" placeholder="Payment Amount">
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-control" formControlName="payType">
+                                <option value="">Payment Type</option>
+                                <option value="1">Principal</option>
+                                <option value="2">Interest</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <input class="form-control" formControlName="payComments" placeholder="Comments">
+                        </div>
+                        <div class="col-md-2">
+                            <button [disabled]="paymentForm.invalid" type="submit" class="btn btn-success btn-xs">Add</button>
+                            <button (click)="onReset()" type="button" class="btn btn-success btn-xs">Reset</button>
+                        </div>
+                    </div>
+                </form>
+                <div id="divPayGrid">
+                    <app-loan-payment-list (loanStatus)="loanStatus" (paymentList)="paymentList" (editPayment)="onEdit($event)" (deletePayment)="onDelete($event)" #payList></app-loan-payment-list>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-loan-calc-interest #calcInterest></app-loan-calc-interest>

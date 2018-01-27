@@ -1,0 +1,47 @@
+<div class="panel panel-info" *ngIf="searchResult && searchResult.loanList.length > 0">
+    <div class="panel-body">
+        <table class="table table-bordred table-striped">
+            <thead>
+                <tr>
+                    <th>Ref No</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Borrower</th>
+                    <th class="numeric">Principal Amount</th>
+                    <th class="numeric">Interest Rate (%)</th>
+                    <th class="numeric">Total Payment</th>
+                    <th>Payment Date</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of searchResult.loanList">
+                    <td>
+                        <a [routerLink]="['/loan/edit', item.loanID, {refNo : item.refNo}]">{{item.refNo}}</a>
+                    </td>
+                    <td>{{item.startDate | date : dateDisplayFormat}}</td>
+                    <td>{{displayDate(item.endDate)}}</td>
+                    <td>{{item.borrower}}</td>
+                    <td class="numeric">{{item.principalAmount | number : numbericDisplayFormat}}</td>
+                    <td class="numeric">{{item.monthlyInterest | number : numbericDisplayFormat}}</td>
+                    <td class="numeric">{{item.totalPayAmount | number : numbericDisplayFormat}}</td>
+                    <td class="numeric">{{displayDate(item.payDate)}}</td>
+                    <td>
+                        <div class="status-circle {{getStatusClass(item)}}"></div>                        
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger btn-xs" (click)="onDelete(item)">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="panel panel-info" *ngIf="searchResult && searchResult.loanList.length == 0">
+    <div class="panel-body">
+        <div class="empty-result">No records found.</div>
+    </div>
+</div>

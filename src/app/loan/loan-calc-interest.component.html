@@ -1,0 +1,37 @@
+<div class="row">
+    <div class="col-md-12" id="divCalcInt">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    Interest calculation: 
+                    <em style="font-weight:bold;"> Outstanding ({{ interestToBePaid | number : numericDisplayFormat }}) = Calculated ({{totalCalcInterest | number : numericDisplayFormat}}) - Paid ({{totalInterestPaid | number : numericDisplayFormat}}) </em>
+                    &nbsp;&nbsp;&nbsp;As on : 
+                    <app-datepicker class="form-inline input-sm fixedWidth" [disabled]="loanStatus == 4" [(ngModel)]="intAsOn"></app-datepicker>
+                    &nbsp; <button *ngIf="loanStatus != 4" [disabled]="!intAsOn" (click)="onCalcInterest()" type="button" class="btn btn-info btn-xs">Calculate Interest</button>
+                </h3>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Pay Date</th>
+                        <th class="numeric">Pay Amount</th>
+                        <th class="numeric">Daily Int Rate</th>
+                        <th class="numeric">Int For Days</th>
+                        <th class="numeric">Int On Amount</th>
+                        <th class="numeric">Calculated Interest</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of interestList">
+                        <td> {{ item.payDate | date : dateDisplayFormat}} </td>
+                        <td class="numeric"> {{ item.payAmount | number : numericDisplayFormat}} </td>
+                        <td class="numeric"> {{ item.dailyRate | number : numericDisplayFormat4}} </td>
+                        <td class="numeric"> {{ item.intForDays }} </td>
+                        <td class="numeric"> {{ item.intOnAmount | number : numericDisplayFormat}} </td>
+                        <td class="numeric"> {{ item.calcIntAmount | number : numericDisplayFormat}} </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,74 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Loan Details</h3>
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal" [formGroup]="loanForm" (submit)="onSubmit()" novalidate>
+            <input type="hidden" formControlName="loanID">
+            <div class="form-group">
+                <label class="control-label col-md-1">Start Date:</label>
+                <div class="col-md-3">
+                    <app-datepicker formControlName="startDate"></app-datepicker>
+                    <div *ngIf="startDate.invalid && (startDate.dirty || startDate.touched)" class="field-validation-error">
+                        <div *ngIf="startDate.errors.required">
+                            Start date is required.
+                        </div>
+                    </div>
+                </div>
+                <label class="control-label col-md-1">End Date:</label>
+                <div class="col-md-3">
+                    <app-datepicker formControlName="endDate"></app-datepicker>
+                </div>
+                <label class="control-label col-md-1">Borrower:</label>
+                <div class="col-md-3">
+                    <select class="form-control" formControlName="borrowerID">
+                        <option *ngFor="let item of borrowerList" value="{{item.partyID}}" >{{item.partyName}}</option>
+                    </select>
+                    <div *ngIf="borrowerID.invalid && (borrowerID.dirty || borrowerID.touched)" class="field-validation-error">
+                        <div *ngIf="borrowerID.errors.required">
+                            Borrower is required.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-1">Principal Amount:</label>
+                <div class="col-md-3">
+                    <input class="form-control" formControlName="principalAmount" type="number">
+                    <div *ngIf="principalAmount.invalid && (principalAmount.dirty || principalAmount.touched)" class="field-validation-error">
+                        <div *ngIf="principalAmount.errors.required">
+                            Principal amount is required.
+                        </div>
+                    </div>
+                </div>
+                <label class="control-label col-md-1">Monthly Interest:</label>
+                <div class="col-md-3">
+                    <input class="form-control" formControlName="monthlyInterest" type="number">
+                    <div *ngIf="monthlyInterest.invalid && (monthlyInterest.dirty || monthlyInterest.touched)" class="field-validation-error">
+                        <div *ngIf="monthlyInterest.errors.required">
+                            Monthly interest is required.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-1">Comments:</label>
+                <div class="col-md-7">
+                    <textarea class="form-control" formControlName="comments"></textarea>
+                    <div *ngIf="comments.invalid && (comments.dirty || comments.touched)" class="field-validation-error">
+                        <div *ngIf="comments.errors.required">
+                            Comments is required.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" style="text-align:center;">
+                    <button *ngIf="loanStatus==3" (click)="onClose()" type="button" class="btn btn-primary">Close</button>
+                    <button *ngIf="loanStatus!=4" [disabled]="loanForm.invalid" type="submit" class="btn btn-primary">Save</button>
+                    <button *ngIf="loanStatus!=4" (click)="onReset()" type="button" class="btn btn-primary">Reset</button>
+                    <button (click)="onBack()" type="button" class="btn btn-primary">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<app-loan-payment *ngIf="showChildComp" (loanAddModel)="model" (onPaymentUpdate)="onPayUpdate($event)" #payment></app-loan-payment>

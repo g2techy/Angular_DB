@@ -1,0 +1,31 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>Pay Date</th>
+            <th class="numeric">Pay Amount</th>
+            <th>Pay Type</th>
+            <th>Comments</th>
+            <th class="numeric">Outstanding Principal</th>
+            <th class="numeric">Interest Paid</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let payment of paymentList">
+            <td>{{ payment.payDate | date : dateDispalyFormat }}</td>
+            <td class="numeric">{{ payment.payAmount | number : numericDisplayFormat }}</td>
+            <td>{{ payment.payTypeName }}</td>
+            <td>{{ payment.payComments }}</td>
+            <td class="numeric">{{ payment.outstandingPrincipal | number : numericDisplayFormat }}</td>
+            <td class="numeric">{{ payment.interestPaid | number : numericDisplayFormat }}</td>
+            <td class="numeric" *ngIf="loanStatus!=4">
+                <button (click)="onEdit(payment)" type="button" class="btn btn-success btn-xs">
+                    <span class="glyphicon glyphicon-edit"></span>
+                </button>
+                <button (click)="onDelete(payment)" type="button" class="btn btn-danger btn-xs">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,41 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Search loan details</h3>
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal" [formGroup]="searchForm" (submit)="onSubmit()" novalidate>
+            <div class="form-group">
+                <label class="control-label col-md-1">Start Date:</label>
+                <div class="col-md-3">
+                    <app-datepicker formControlName="startDate"></app-datepicker>
+                </div>
+                <label class="control-label col-md-1">End Date:</label>
+                <div class="col-md-3">
+                    <app-datepicker formControlName="endDate"></app-datepicker>
+                </div>
+                <label class="control-label col-md-1">Borrower:</label>
+                <div class="col-md-3">
+                    <select class="form-control" formControlName="borrowerID">
+                        <option value="0">Borrower</option>
+                        <option *ngFor="let item of borrowerList" value="{{item.partyID}}" >{{item.partyName}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-1">Ref No:</label>
+                <div class="col-md-3">
+                    <input class="form-control" formControlName="refNo">
+                </div>
+                <div class="col-md-offset-2 col-md-4" style="text-align:center;">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                    <button type="button" class="btn btn-primary" (click)="onReset()">Reset</button>
+                    <button type="button" class="btn btn-primary" (click)="onAdd()">Add</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <app-pager (pageSize)="pageSize" (onPageChange)="onPageChange($event)" #pager></app-pager>
+    <app-loan-list [searchResult]="searchResult" (deleteItem)="onDelete($event)" ></app-loan-list>
+</div>

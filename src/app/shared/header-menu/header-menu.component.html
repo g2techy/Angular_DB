@@ -42,6 +42,20 @@
             </li>
           </ul>
         </li>
+        <li *ngIf="isUserLoggedIn() && isBroker()" class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Loan <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li>
+                <a [routerLink]="['/loan']">Search</a>
+              </li>
+              <li>
+                <a [routerLink]="['/loan/add']">Add</a>
+              </li>
+              <li>
+                <a [routerLink]="['/loan/report']">Loan Report</a>
+              </li>
+            </ul>
+          </li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container-fluid -->

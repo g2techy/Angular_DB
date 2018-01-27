@@ -16,6 +16,10 @@ const appRoutes : Routes = [
     canActivateChild : [AuthGuard], canLoad : [AuthGuard],
     data : { roles : [ UserRoleID.broker ]}
   },
+  { path: 'loan', loadChildren: 'app/loan/loan.module#LoanModule', canActivate : [AuthGuard],
+    canActivateChild : [AuthGuard], canLoad : [AuthGuard],
+    data : { roles : [ UserRoleID.broker ]}
+  },
   { path : '**', component : PageNotFoundComponent }
 ];
 
